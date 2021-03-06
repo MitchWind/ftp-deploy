@@ -30,12 +30,11 @@ inputs:
     working:
       description: 'Specifies the working directory.'
       required: false
-      default: $GITHUB_ACTION_PATH
+      default: ${{GITHUB_ACTION_PATH}}
 runs:
   using: 'composite'
   steps:
     - run: $GITHUB_ACTION_PATH/init.sh
-      working-directory: ${}
       shell: bash
 branding:
   icon: 'upload-cloud'
