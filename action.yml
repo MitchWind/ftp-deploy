@@ -34,8 +34,7 @@ runs:
   using: 'composite'
   steps:
     - run: |
-        echo ${{ inputs.server }}
-        echo ${INPUT_SERVER}
+        echo ${{ inputs.server }}        
       shell: bash
 branding:
   icon: 'upload-cloud'
