@@ -3,7 +3,7 @@ echo "=== Environment variables ==="
 echo "INPUT_SERVER: ${INPUT_SERVER}"
 echo $INPUT_SERVER
 
-echo $inputs.server
+echo $server
 
 if type lftp >/dev/null 2>&1; then 
   echo 'exists lftp' 
