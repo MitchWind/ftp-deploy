@@ -27,8 +27,8 @@ runs:
   using: 'composite'
   steps:
     - run: |
-        ls -lah
-        sudo apt-get install lftp
+        sudo apt-get -y --force-yes install lftp
+        echo $server
       shell: bash
 branding:
   icon: 'upload-cloud'
