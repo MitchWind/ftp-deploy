@@ -4,31 +4,38 @@ author: 'Wind'
 inputs:
     server:
       required: true
-      description: 'ftp server'
+      description: 'FTP Server.'
     username:
       required: true
-      description: 'ftp username'
+      description: 'FTP Username'
     password:
       required: true
-      description: 'ftp password'
+      description: 'FTP Password'
     port:
       required: false
-      description: 'Server port to connect to (read your web hosts docs)'
-    protocol:
-      required: false
-      description: 'protocol to deploy with - ftp, ftps, or ftps-legacy'
+      description: 'Server Port'
+      default: '21'
     local-dir:
       required: false
-      description: 'Folder to upload from, must end with trailing slash /'
+      description: 'Local directory.'
+      default: './'
     server-dir:
       required: false
-      description: 'Path to upload to on the server. Must end with trailing slash /'
+      description: 'Server directory'
+      default: './'
+    delete:
+      description: 'Delete all the files inside of the remote directory.'
+      required: false
+      default: 'false'
+    working:
+      description: 'Specifies the working directory.'
+      required: false
+      default: $GITHUB_ACTION_PATH
 runs:
   using: 'composite'
   steps:
-    - run: |
-        sudo apt-get -y --force-yes install lftp
-        echo $server
+    - run: $GITHUB_ACTION_PATH/init.sh
+      working-directory: ${}
       shell: bash
 branding:
   icon: 'upload-cloud'
