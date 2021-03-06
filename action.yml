@@ -33,7 +33,9 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - run: $GITHUB_ACTION_PATH/init.sh
+    - run: |
+        echo ${{ inputs.server }}
+        echo ${INPUT_SERVER}
       shell: bash
 branding:
   icon: 'upload-cloud'
