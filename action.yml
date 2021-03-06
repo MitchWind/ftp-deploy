@@ -30,7 +30,6 @@ inputs:
     working:
       description: 'Specifies the working directory.'
       required: false
-      default: ${GITHUB_ACTION_PATH}
 runs:
   using: 'composite'
   steps:
