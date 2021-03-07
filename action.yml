@@ -38,7 +38,7 @@ inputs:
     net_max_retries:
       description: 'NET - Maximum number of operation without success. 0 unlimited. 1 no retries.'
       required: false
-      default: '1'
+      default: '0'
     delete:
       description: 'Delete all the files inside of the remote directory.'
       required: false
