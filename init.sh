@@ -1,10 +1,8 @@
 #!/bin/bash
 echo "=== Environment variables ==="
-env
-echo "INPUT_SERVER: ${{INPUT_SERVER}}"
 echo $INPUT_SERVER
 
-echo "测试1：$server"
+echo "测试1：${INPUT_SERVER}"
 
 if type lftp >/dev/null 2>&1; then 
   echo 'exists lftp' 
