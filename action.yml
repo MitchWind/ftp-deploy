@@ -43,8 +43,15 @@ inputs:
       description: 'Delete all the files inside of the remote directory.'
       required: false
       default: 'true'
+    no_perms:
+      description: "don't set file permissions."
+      required: false
+      default: 'true'
     settings:
       description: 'FTP setting config.'
+      required: false
+    options:
+      description: 'mirror options.'
       required: false
     working-directory:
       description: 'Specifies the working directory.'
@@ -59,9 +66,11 @@ runs:
         INPUT_PASSWORD: ${{inputs.password}}
         INPUT_PORT: ${{inputs.port}}   
         INPUT_LOCAL_DIR: ${{inputs.local_dir}}  
-        INPUT_SERVER_DIR: ${{inputs.server_dir}}  
+        INPUT_SERVER_DIR: ${{inputs.server_dir}}
+        INPUT_NO_PERMS: ${{inputs.no_perms}}  
         INPUT_DELETE: ${{inputs.delete}}
-        INPUT_SETTINGS: ${{inputs.settings}}        
+        INPUT_SETTINGS: ${{inputs.settings}}
+        INPUT_OPTIONS: ${{inputs.options}}
         INPUT_SSL_ALLOW: ${{inputs.ssl_allow}}
         INPUT_MAX_RETRIES: ${{inputs.max_retries}}
         INPUT_NET_MAX_RETRIES: ${{inputs.net_max_retries}}
