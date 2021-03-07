@@ -1,4 +1,4 @@
-#Usage Example
+## Usage Example
 ```yaml
 name: Example
 
@@ -22,7 +22,7 @@ jobs:
             server_dir: "test"
 
 ```
-#Settings
+## Settings
 |Option|Description|Required|Default |Example
 |---    | ---       | ---    | ---   | ---
 |server |FTP Server.|Yes     |N/A    |fpt.server

@@ -1,4 +1,4 @@
-name: 'FTP Deploy'
+name: 'FTP Deploy Wind'
 description: 'Automate deploying websites and more with this GitHub action'
 author: 'Wind'
 inputs:
