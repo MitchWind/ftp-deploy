@@ -3,7 +3,7 @@ FTP_SETTINGS="set ftp:ssl-allow ${INPUT_SSL_ALLOW};"
 FTP_SETTINGS="${FTP_SETTINGS} set net:timeout ${INPUT_NET_TIMEOUT};"
 FTP_SETTINGS="${FTP_SETTINGS} set net:max-retries ${INPUT_NET_MAX_RETRIES};"
 
-MIRROR_COMMAND="mirror --continue --reverse --ascii -v "
+MIRROR_COMMAND="mirror --continue --reverse --ascii -v -x ^\.git/$ "
 #自定义参数设置
 if [ -z "${INPUT_SETTINGS}" ]; then
   FTP_SETTINGS="${FTP_SETTINGS} ${INPUT_SETTINGS}"
@@ -47,4 +47,4 @@ lftp \
   -u "${INPUT_USERNAME}","${INPUT_PASSWORD}" \
   -p ${INPUT_PORT} \
   "${INPUT_SERVER}" \
-  -e "${FTP_SETTINGS} ${MIRROR_COMMAND} ${INPUT_LOCAL_DIR} ${INPUT_SERVER_DIR}; quit;"
+  -e "${FTP_SETTINGS} ${MIRROR_COMMAND} -R ${INPUT_LOCAL_DIR} ${INPUT_SERVER_DIR}; quit;"
