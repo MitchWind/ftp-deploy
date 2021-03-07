@@ -15,18 +15,37 @@ inputs:
       required: false
       description: 'Server Port'
       default: '21'
-    local-dir:
+    local_dir:
       required: false
       description: 'Local directory.'
       default: './'
-    server-dir:
+    server_dir:
       required: false
       description: 'Server directory'
       default: './'
+    max_retries:
+      description: 'Times that the lftp will be executed if an error occurred.'
+      required: false
+      default: '1'
+    ssl_allow:
+      description: 'FTP - Allow SSL encryption.'
+      required: false
+      default: 'false'
+    net_timeout:
+      description: 'NET - Sets the network protocol timeout.'
+      required: false
+      default: '10'
+    net_max_retries:
+      description: 'NET - Maximum number of operation without success. 0 unlimited. 1 no retries.'
+      required: false
+      default: '1'
     delete:
       description: 'Delete all the files inside of the remote directory.'
       required: false
-      default: 'false'
+      default: 'true'
+    settings:
+      description: 'FTP setting config.'
+      required: false
     working-directory:
       description: 'Specifies the working directory.'
       required: false
@@ -39,9 +58,14 @@ runs:
         INPUT_USERNAME: ${{inputs.username}}
         INPUT_PASSWORD: ${{inputs.password}}
         INPUT_PORT: ${{inputs.port}}   
-        INPUT_LOCAL-DIR: ${{inputs.local-dir}}  
-        INPUT_SERVER-DIR: ${{inputs.server-dir}}  
+        INPUT_LOCAL_DIR: ${{inputs.local_dir}}  
+        INPUT_SERVER_DIR: ${{inputs.server_dir}}  
         INPUT_DELETE: ${{inputs.delete}}
+        INPUT_SETTINGS: ${{inputs.settings}}        
+        INPUT_SSL_ALLOW: ${{inputs.ssl_allow}}
+        INPUT_MAX_RETRIES: ${{inputs.max_retries}}
+        INPUT_NET_MAX_RETRIES: ${{inputs.net_max_retries}}
+        INPUT_NET_TIMEOUT: ${{inputs.net_timeout}}
       working-directory: ${{inputs.working-directory}}
       shell: bash
 branding:
