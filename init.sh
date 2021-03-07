@@ -44,7 +44,8 @@ else
 fi
 
 lftp \
+  --debug \
   -u "${INPUT_USERNAME}","${INPUT_PASSWORD}" \
   -p ${INPUT_PORT} \
   "${INPUT_SERVER}" \
-  -e "${FTP_SETTINGS} ${MIRROR_COMMAND} ${INPUT_LOCAL_DIR} ${INPUT_SERVER_DIR}; quit;"
+  -e "${FTP_SETTINGS} ${MIRROR_COMMAND} -R ${INPUT_LOCAL_DIR} ${INPUT_SERVER_DIR}; quit;"
