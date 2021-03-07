@@ -27,7 +27,7 @@ inputs:
       description: 'Delete all the files inside of the remote directory.'
       required: false
       default: 'false'
-    working:
+    working-directory:
       description: 'Specifies the working directory.'
       required: false
 runs:
@@ -42,6 +42,7 @@ runs:
         INPUT_LOCAL-DIR: ${{inputs.local-dir}}  
         INPUT_SERVER-DIR: ${{inputs.server-dir}}  
         INPUT_DELETE: ${{inputs.delete}}
+      working-directory: ${{inputs.working-directory}}
       shell: bash
 branding:
   icon: 'upload-cloud'
