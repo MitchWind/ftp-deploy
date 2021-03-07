@@ -26,7 +26,7 @@ else
 fi
 
 if [ "${INPUT_DELETE}" = "true" ]; then
-  MIRROR_COMMAND="${MIRROR_COMMAND} --delete"
+  MIRROR_COMMAND="${MIRROR_COMMAND} --delete -vv"
 fi
 
 if type lftp >/dev/null 2>&1; then 
@@ -36,7 +36,7 @@ else
 fi
 
 lftp \
-  --debug \
   -u "${INPUT_USERNAME}","${INPUT_PASSWORD}" \
+  -p ${INPUT_PORT} \
   "${INPUT_SERVER}" \
   -e "${FTP_SETTINGS} ${MIRROR_COMMAND} ${INPUT_LOCAL_DIR} ${INPUT_SERVER_DIR}; quit;"
