@@ -27,6 +27,10 @@ inputs:
       description: 'Times that the lftp will be executed if an error occurred.'
       required: false
       default: '1'
+    nop_interval:
+      description: 'FTP - Delay in seconds between NOOP commands when downloading tail of a file.'
+      required: false
+      default: '2'
     ssl_allow:
       description: 'FTP - Allow SSL encryption.'
       required: false
@@ -39,6 +43,21 @@ inputs:
       description: 'NET - Maximum number of operation without success. 0 unlimited. 1 no retries.'
       required: false
       default: '3'
+    net_persist_retries:
+      description: 'NET - Ignore hard errors. When reply 5xx errors or there is too many users.'
+      required: false
+      default: '5'
+    net_reconnect_interval_multiplier:
+      description: 'sets  multiplier by which base interval is multiplied each time new attempt to perform
+                    an operation fails. When the interval reaches maximum, it is reset to base value.  See
+                    net:reconnect-interval-base and net:reconnect-interval-max.'
+      required: false
+      default: '1'
+    net_reconnect_interval_base:
+      description: 'sets the base minimal time between reconnects. Actual interval depends  on  net:reconвЂђ
+              nect-interval-multiplier and number of attempts to perform an operation.'
+      required: false
+      default: '5'
     delete:
       description: 'Delete all the files inside of the remote directory.'
       required: false
@@ -71,10 +90,14 @@ runs:
         INPUT_DELETE: ${{inputs.delete}}
         INPUT_SETTINGS: ${{inputs.settings}}
         INPUT_OPTIONS: ${{inputs.options}}
+        INPUT_NOP_INTERVAL:  ${{inputs.nop_interval}}
         INPUT_SSL_ALLOW: ${{inputs.ssl_allow}}
         INPUT_MAX_RETRIES: ${{inputs.max_retries}}
         INPUT_NET_MAX_RETRIES: ${{inputs.net_max_retries}}
         INPUT_NET_TIMEOUT: ${{inputs.net_timeout}}
+        INPUT_NET_PERSIST_RETRIES: ${{inputs.net_persist_retries}}
+        INPUT_NET_RECONNECT_INTERVAL_MULTIPLIER: ${{inputs.net_reconnect_interval_multiplier}}
+        INPUT_NET_RECONNECT_INTERVAL_BASE: ${{inputs.net_reconnect_interval_base}}
       working-directory: ${{inputs.working-directory}}
       shell: bash
 branding:
