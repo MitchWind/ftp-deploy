@@ -33,16 +33,15 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - run: |
-        echo "INPUT_SERVER: ${{inputs.server}}"
-        echo "INPUT_USERNAME: ${{inputs.username}}"
-        echo "INPUT_PASSWORD: ${{inputs.password}}"
-        echo "INPUT_PORT: ${{inputs.port}}"
-        echo "INPUT_LOCAL-DIR: ${{inputs.local-dir}}"
-        echo "INPUT_SERVER-DIR: ${{inputs.server-dir}}"
-        echo "INPUT_DELETE: ${{inputs.delete}}"        
-      shell: bash
     - run: $GITHUB_ACTION_PATH/init.sh
+      env:
+        INPUT_SERVER: ${{inputs.server}}
+        INPUT_USERNAME: ${{inputs.username}}
+        INPUT_PASSWORD: ${{inputs.password}}
+        INPUT_PORT: ${{inputs.port}}   
+        INPUT_LOCAL-DIR: ${{inputs.local-dir}}  
+        INPUT_SERVER-DIR: ${{inputs.server-dir}}  
+        INPUT_DELETE: ${{inputs.delete}}
       shell: bash
 branding:
   icon: 'upload-cloud'
