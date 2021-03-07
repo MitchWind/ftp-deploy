@@ -3,7 +3,7 @@ FTP_SETTINGS="set ftp:ssl-allow ${INPUT_SSL_ALLOW};"
 FTP_SETTINGS="${FTP_SETTINGS} set net:timeout ${INPUT_NET_TIMEOUT};"
 FTP_SETTINGS="${FTP_SETTINGS} set net:max-retries ${INPUT_NET_MAX_RETRIES};"
 
-MIRROR_COMMAND="mirror --continue --reverse"
+MIRROR_COMMAND="mirror --continue --reverse --no-perms -v "
 
 if [ -z "${INPUT_SETTINGS}" ]; then
   FTP_SETTINGS="${FTP_SETTINGS} ${INPUT_SETTINGS}"
@@ -26,7 +26,7 @@ else
 fi
 
 if [ "${INPUT_DELETE}" = "true" ]; then
-  MIRROR_COMMAND="${MIRROR_COMMAND} --delete -vv"
+  MIRROR_COMMAND="${MIRROR_COMMAND} --delete"
 fi
 
 if type lftp >/dev/null 2>&1; then 
