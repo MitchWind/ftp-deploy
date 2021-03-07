@@ -1,4 +1,5 @@
 #!/bin/bash
+pwd
 echo "=== Environment variables ==="
 echo $INPUT_SERVER
 
