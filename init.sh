@@ -40,7 +40,7 @@ fi
 if type lftp >/dev/null 2>&1; then 
   echo 'exists lftp'
 else 
-  sudo apt-get install lftp 
+  sudo -E apt-get -qq install lftp 
 fi
 
 lftp \
