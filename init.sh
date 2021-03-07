@@ -3,7 +3,7 @@ FTP_SETTINGS="set ftp:ssl-allow ${INPUT_SSL_ALLOW};"
 FTP_SETTINGS="${FTP_SETTINGS} set net:timeout ${INPUT_NET_TIMEOUT};"
 FTP_SETTINGS="${FTP_SETTINGS} set net:max-retries ${INPUT_NET_MAX_RETRIES};"
 
-MIRROR_COMMAND="mirror --continue --reverse -v -x ^\.git/$ "
+MIRROR_COMMAND="mirror --continue --reverse -vvv -x ^\.git/$ "
 #自定义参数设置
 if [ -z "${INPUT_SETTINGS}" ]; then
   FTP_SETTINGS="${FTP_SETTINGS} ${INPUT_SETTINGS}"
