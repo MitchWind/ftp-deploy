@@ -9,7 +9,7 @@ FTP_SETTINGS="${FTP_SETTINGS} set ftp:nop-interval ${INPUT_NOP_INTERVAL};"
 #保留原始时间
 # FTP_SETTINGS="${FTP_SETTINGS} set ftp:use-mdtm-overloaded true;" 
 # FTP_SETTINGS="${FTP_SETTINGS} set ftp:use-mlsd ${INPUT_USE_MLSD};"
-# FTP_SETTINGS="${FTP_SETTINGS} set ftp:use-mdtm ${INPUT_USE_MDTM};"
+FTP_SETTINGS="${FTP_SETTINGS} set ftp:use-mdtm ${INPUT_USE_MDTM};"
 FTP_SETTINGS="${FTP_SETTINGS} set ftp:passive-mode ${INPUT_PASSIVE_MODE};"
 MIRROR_COMMAND="mirror --continue --reverse --verbose=3 -x ^\.git/$ "
 #自定义参数设置
