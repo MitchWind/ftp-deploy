@@ -43,6 +43,11 @@ if [ "${INPUT_DELETE}" = "true" ]; then
   MIRROR_COMMAND="${MIRROR_COMMAND} --delete"
 fi
 
+#是否开启调试模式
+if [ "${INPUT_DEBUG}" = "true" ]; then
+  FTP_SYNTAX="--debug"
+fi
+
 if type lftp >/dev/null 2>&1; then 
   echo 'exists lftp'
 else 
@@ -50,7 +55,7 @@ else
 fi
 
 lftp \
-  --debug \
+  "${FTP_SYNTAX}" \
   -u "${INPUT_USERNAME}","${INPUT_PASSWORD}" \
   -p ${INPUT_PORT} \
   "${INPUT_SERVER}" \

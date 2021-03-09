@@ -84,6 +84,10 @@ inputs:
     options:
       description: 'mirror options.'
       required: false
+    debug:
+      description: 'FTP DEBUG.'
+      required: false
+      default: 'false'
     working-directory:
       description: 'Specifies the working directory.'
       required: false
@@ -105,6 +109,7 @@ runs:
         INPUT_DELETE: ${{inputs.delete}}
         INPUT_SETTINGS: ${{inputs.settings}}
         INPUT_OPTIONS: ${{inputs.options}}
+        INPUT_DEBUG: ${{inputs.debug}}
         INPUT_NOP_INTERVAL:  ${{inputs.nop_interval}}
         INPUT_SSL_ALLOW: ${{inputs.ssl_allow}}
         INPUT_MAX_RETRIES: ${{inputs.max_retries}}
