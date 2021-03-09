@@ -27,10 +27,22 @@ inputs:
       description: 'Times that the lftp will be executed if an error occurred.'
       required: false
       default: '1'
+    passive_mode:
+      description: 'sets passive FTP mode. This can be useful if you are behind a firewall or a dumb.'
+      required: false
+      default: 'false'
     nop_interval:
       description: 'FTP - Delay in seconds between NOOP commands when downloading tail of a file.'
       required: false
       default: '2'
+    use_mlsd:
+      description: 'when  true,  lftp  will  use  MLSD  command  for directory listing if supported by the server.'
+      required: false
+      default: 'true'
+    use_mdtm:
+      description: 'when true (default), lftp uses MDTM command to determine file modification time.'
+      required: false
+      default: 'false'
     ssl_allow:
       description: 'FTP - Allow SSL encryption.'
       required: false
@@ -86,7 +98,10 @@ runs:
         INPUT_PORT: ${{inputs.port}}   
         INPUT_LOCAL_DIR: ${{inputs.local_dir}}  
         INPUT_SERVER_DIR: ${{inputs.server_dir}}
-        INPUT_NO_PERMS: ${{inputs.no_perms}}  
+        INPUT_PASSIVE_MODE: ${{inputs.passive_mode}}
+        INPUT_NO_PERMS: ${{inputs.no_perms}}
+        INPUT_USE_MLSD: ${{inputs.use_mlsd}}  
+        INPUT_USE_MDTM: ${{inputs.use_mdtm}}
         INPUT_DELETE: ${{inputs.delete}}
         INPUT_SETTINGS: ${{inputs.settings}}
         INPUT_OPTIONS: ${{inputs.options}}

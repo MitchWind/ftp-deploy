@@ -6,7 +6,10 @@ FTP_SETTINGS="${FTP_SETTINGS} set net:reconnect-interval-multiplier ${INPUT_NET_
 FTP_SETTINGS="${FTP_SETTINGS} set net:reconnect-interval-base ${INPUT_NET_RECONNECT_INTERVAL_BASE};"
 FTP_SETTINGS="${FTP_SETTINGS} set net:persist-retries ${INPUT_NET_PERSIST_RETRIES};"
 FTP_SETTINGS="${FTP_SETTINGS} set ftp:nop-interval ${INPUT_NOP_INTERVAL};"
-MIRROR_COMMAND="mirror --continue --reverse -vvv -x ^\.git/$ "
+FTP_SETTINGS="${FTP_SETTINGS} set ftp:use-mlsd ${INPUT_USE_MLSD};"
+FTP_SETTINGS="${FTP_SETTINGS} set ftp:use-mdtm ${INPUT_USE_MDTM};"
+FTP_SETTINGS="${FTP_SETTINGS} set ftp:passive-mode ${INPUT_PASSIVE_MODE};"
+MIRROR_COMMAND="mirror --continue --reverse --verbose=3 -x ^\.git/$ "
 #自定义参数设置
 if [ -z "${INPUT_SETTINGS}" ]; then
   FTP_SETTINGS="${FTP_SETTINGS} ${INPUT_SETTINGS}"
@@ -50,4 +53,4 @@ lftp \
   -u "${INPUT_USERNAME}","${INPUT_PASSWORD}" \
   -p ${INPUT_PORT} \
   "${INPUT_SERVER}" \
-  -e "${FTP_SETTINGS} ${MIRROR_COMMAND} -R ${INPUT_LOCAL_DIR} ${INPUT_SERVER_DIR}; quit;"
+  -e "${FTP_SETTINGS} ${MIRROR_COMMAND} ${INPUT_LOCAL_DIR} ${INPUT_SERVER_DIR}; quit;"
