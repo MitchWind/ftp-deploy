@@ -30,7 +30,7 @@ inputs:
     passive_mode:
       description: 'sets passive FTP mode. This can be useful if you are behind a firewall or a dumb.'
       required: false
-      default: 'false'
+      default: 'true'
     nop_interval:
       description: 'FTP - Delay in seconds between NOOP commands when downloading tail of a file.'
       required: false
