@@ -6,6 +6,8 @@ FTP_SETTINGS="${FTP_SETTINGS} set net:reconnect-interval-multiplier ${INPUT_NET_
 FTP_SETTINGS="${FTP_SETTINGS} set net:reconnect-interval-base ${INPUT_NET_RECONNECT_INTERVAL_BASE};"
 FTP_SETTINGS="${FTP_SETTINGS} set net:persist-retries ${INPUT_NET_PERSIST_RETRIES};"
 FTP_SETTINGS="${FTP_SETTINGS} set ftp:nop-interval ${INPUT_NOP_INTERVAL};"
+#保留原始时间
+FTP_SETTINGS="${FTP_SETTINGS} set ftp:use-mdtm-overloaded true;" 
 FTP_SETTINGS="${FTP_SETTINGS} set ftp:use-mlsd ${INPUT_USE_MLSD};"
 FTP_SETTINGS="${FTP_SETTINGS} set ftp:use-mdtm ${INPUT_USE_MDTM};"
 FTP_SETTINGS="${FTP_SETTINGS} set ftp:passive-mode ${INPUT_PASSIVE_MODE};"
