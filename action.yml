@@ -26,7 +26,7 @@ inputs:
     max_retries:
       description: 'Times that the lftp will be executed if an error occurred.'
       required: false
-      default: '1'
+      default: '2'
     passive_mode:
       description: 'sets passive FTP mode. This can be useful if you are behind a firewall or a dumb.'
       required: false
