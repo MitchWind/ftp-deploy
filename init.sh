@@ -1,4 +1,18 @@
 #!/bin/bash
+
+log() {
+	echo -e "\e[92m---\e[39m $*"
+}
+
+warn() {
+	echo -e "\e[93m***\e[39m $*" >&2
+}
+
+err() {
+	echo -e "\e[91m!!!\e[39m $*" >&2
+}
+
+
 FTP_SETTINGS="set ftp:ssl-allow ${INPUT_SSL_ALLOW};"
 FTP_SETTINGS="${FTP_SETTINGS} set net:timeout ${INPUT_NET_TIMEOUT};"
 FTP_SETTINGS="${FTP_SETTINGS} set net:max-retries ${INPUT_NET_MAX_RETRIES};"
@@ -56,9 +70,26 @@ else
   sudo -E apt-get -qq install lftp 
 fi
 
-lftp \
-  "${FTP_SYNTAX}" \
-  -u "${INPUT_USERNAME}","${INPUT_PASSWORD}" \
-  -p ${INPUT_PORT} \
-  "${INPUT_SERVER}" \
-  -e "${FTP_SETTINGS} ${MIRROR_COMMAND} ${INPUT_LOCAL_DIR} ${INPUT_SERVER_DIR}; quit;"
+COUNTER=1
+SUCCESS=""
+until [ ${COUNTER} -gt ${INPUT_MAX_RETRIES} ]; do
+  log "执行第${COUNTER}次"
+  lftp \
+    "${FTP_SYNTAX}" \
+    -u "${INPUT_USERNAME}","${INPUT_PASSWORD}" \
+    -p ${INPUT_PORT} \
+    "${INPUT_SERVER}" \
+    -e "${FTP_SETTINGS} ${MIRROR_COMMAND} ${INPUT_LOCAL_DIR} ${INPUT_SERVER_DIR}; quit;" && SUCCESS="true"
+  if [ -n "${SUCCESS}" ]; then
+    break
+  fi
+
+  sleep 1m
+  COUNTER=$((COUNTER + 1))
+done
+
+if [ -z "${SUCCESS}" ]; then
+  err "上传出现错误！！"
+  exit 1
+fi
+log "上传完成"

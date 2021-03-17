@@ -38,11 +38,11 @@ inputs:
     use_mlsd:
       description: 'when  true,  lftp  will  use  MLSD  command  for directory listing if supported by the server.'
       required: false
-      default: 'true'
+      default: 'false'
     use_mdtm:
       description: 'when true (default), lftp uses MDTM command to determine file modification time.'
       required: false
-      default: 'false'
+      default: 'true'
     ssl_allow:
       description: 'FTP - Allow SSL encryption.'
       required: false
@@ -54,7 +54,7 @@ inputs:
     net_max_retries:
       description: 'NET - Maximum number of operation without success. 0 unlimited. 1 no retries.'
       required: false
-      default: '0'
+      default: '1'
     net_persist_retries:
       description: 'NET - Ignore hard errors. When reply 5xx errors or there is too many users.'
       required: false
