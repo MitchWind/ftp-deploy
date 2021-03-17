@@ -90,6 +90,5 @@ done
 
 if [ -z "${SUCCESS}" ]; then
   err "上传出现错误！！"
-  exit 1
 fi
 log "上传完成"
