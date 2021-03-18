@@ -74,12 +74,15 @@ COUNTER=1
 SUCCESS=""
 until [ ${COUNTER} -gt ${INPUT_MAX_RETRIES} ]; do
   log "执行第${COUNTER}次"
+  #清空已有变量
+  SUCCESS=""
   lftp \
     "${FTP_SYNTAX}" \
     -u "${INPUT_USERNAME}","${INPUT_PASSWORD}" \
     -p ${INPUT_PORT} \
     "${INPUT_SERVER}" \
     -e "${FTP_SETTINGS} ${MIRROR_COMMAND} ${INPUT_LOCAL_DIR} ${INPUT_SERVER_DIR}; quit;" && SUCCESS="true"
+  echo "当前执行状态${SUCCESS}"
   if [ -n "${SUCCESS}" ]; then
     break
   fi
@@ -90,5 +93,6 @@ done
 
 if [ -z "${SUCCESS}" ]; then
   err "上传出现错误！！"
+else
+  log "上传完成"
 fi
-log "上传完成"
