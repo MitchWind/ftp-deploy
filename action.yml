@@ -34,7 +34,7 @@ inputs:
     nop_interval:
       description: 'FTP - Delay in seconds between NOOP commands when downloading tail of a file.'
       required: false
-      default: '2'
+      default: '10'
     use_mlsd:
       description: 'when  true,  lftp  will  use  MLSD  command  for directory listing if supported by the server.'
       required: false
